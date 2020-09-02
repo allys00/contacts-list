@@ -4,17 +4,18 @@ import { calculateAge } from "../utils/functions";
 export default {
 
   create: async (req, res) => {
-    const contact = await Contact.create({
-      ...req.body
-    });
-
-    contact.age = calculateAge(contact.birthday);
-    if (contact.age < 0) {
+    const age = calculateAge(req.body.birthday);
+    if (age < 0) {
       throw new BadRequestError("Data de nascimento inválida");
-    } else if (contact.age < 18) {
+    } else if (age < 18) {
       throw new BadRequestError("Contato deve ser maior de idade")
     }
 
+    const contact = await Contact.create({
+      ...req.body
+    });
+    
+    contact.age = age;
     res.status(200).send(contact);
   },
 
@@ -44,7 +45,7 @@ export default {
     res.status(204).send()
   },
 
-  delete: async(req,res) => {
+  delete: async (req, res) => {
     const _id = req.params.id;
     await Contact.findByIdAndDelete(_id);
     res.status(204).send();
