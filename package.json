@@ -1,0 +1,31 @@
+{
+  "name": "contacts-service",
+  "version": "1.0.0",
+  "description": "my contacts",
+  "scripts": {
+    "dev": "serverless offline --cfg local"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "serverless-offline": "^5.12.1",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.35.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "http-status-codes": "^1.4.0",
+    "joi": "^14.3.1",
+    "joi-objectid": "^3.0.1",
+    "mongodb": "^3.5.8",
+    "mongoose": "^5.9.18",
+    "serverless-http": "^2.3.0",
+    "uuid": "^3.3.3"
+  },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT"
+}

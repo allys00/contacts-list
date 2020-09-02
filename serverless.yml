@@ -1,0 +1,22 @@
+service:
+  name: contact-service
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+      APP_DB_NAME: ${file(./env/env.${opt:cfg}.json):APP_DB_NAME}
+      APP_DB_USER: ${file(./env/env.${opt:cfg}.json):APP_DB_USER}
+      APP_DB_PASSWORD: ${file(./env/env.${opt:cfg}.json):APP_DB_PASSWORD}
+functions:
+  server:
+    handler: src/lambdas/server.handler
+    events:
+      - http:
+          path: v1/{proxy+}
+          method: ANY
+  
