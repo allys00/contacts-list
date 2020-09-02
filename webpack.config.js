@@ -12,9 +12,6 @@ module.exports = {
   },
   mode: 'development',
   target: 'async-node',
-  plugins: [
-    new webpack.ContextReplacementPlugin(/knex\/lib\/dialects/, /mysql\/index.js/),
-  ],
   module: {
     rules: [
       {
