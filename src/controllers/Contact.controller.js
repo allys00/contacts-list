@@ -19,14 +19,13 @@ export default {
   },
 
   list: async (_, res) => {
-    const contacts = await Contact
-      .find()
-      .where({ active: true })
-      .map(contact => {
-        const birthday = new Date(contact.birthday);
-        contact.age = calculateAge(birthday);
-        return contact
-      });;
+    let contacts = await Contact.find().where({ active: true });
+
+    contacts = contacts.map(contact => {
+      const birthday = new Date(contact.birthday);
+      contact.age = calculateAge(birthday);
+      return contact
+    });
 
     res.status(200).json(contacts);
   },
@@ -45,7 +44,7 @@ export default {
     res.status(204).send()
   },
 
-  delete: async (req, res) => {
+  delete: async(req,res) => {
     const _id = req.params.id;
     await Contact.findByIdAndDelete(_id);
     res.status(204).send();
